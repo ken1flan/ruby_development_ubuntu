@@ -37,3 +37,14 @@ EOT
   user "root"
   not_if "test -e /usr/local/bin/vim"
 end
+
+execute "install anyenv" do
+  command <<"EOT"
+    git clone https://github.com/riywo/anyenv ~/.anyenv
+    echo 'export PATH="$HOME/.anyenv/bin:$PATH"' >> ~/.profile
+    echo 'eval "$(anyenv init -)"' >> ~/.profile
+    export PATH="$HOME/.anyenv/bin:$PATH"
+    eval "$(anyenv init -)"
+EOT
+  not_if "test -e ~/.anyenv"
+end
