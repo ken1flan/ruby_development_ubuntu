@@ -80,3 +80,21 @@ execute "install ruby 2.2.2" do
 EOT
   not_if "test -e .anyenv/envs/rbenv/versions/2.2.2"
 end 
+
+execute "install ndenv" do
+  command <<EOT
+    export PATH="$HOME/.anyenv/bin:$PATH"
+    eval "$(anyenv init -)"
+    anyenv install ndenv
+EOT
+  not_if "test -e ~/.anyenv/envs/ndenv"
+end 
+
+execute "install node v0.12.6" do
+  command <<EOT
+    export PATH="$HOME/.anyenv/bin:$PATH"
+    eval "$(anyenv init -)"
+    ndenv install v0.12.6
+EOT
+  not_if "test -e .anyenv/envs/ndenv/versions/v0.12.6"
+end 
