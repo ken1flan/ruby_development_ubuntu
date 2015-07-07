@@ -52,6 +52,13 @@ EOT
   not_if "test -e /usr/local/bin/vim"
 end
 
+remote_file "/home/vagrant/.vimrc" do
+  source "./files/dot.vimrc"
+  owner "vagrant"
+  group "vagrant"
+  user "root"
+end
+
 execute "install anyenv" do
   command <<"EOT"
     git clone https://github.com/riywo/anyenv ~/.anyenv
